@@ -12,7 +12,7 @@
   },
   "license": "ISC",
   "author": "Jay",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
@@ -31,6 +31,8 @@
     "@types/express": "^5.0.6",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^26.0.0",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }
