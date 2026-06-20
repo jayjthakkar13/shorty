@@ -1,0 +1,20 @@
+{
+  "name": "shorty-server",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/jayjthakkar13/shorty#readme",
+  "bugs": {
+    "url": "https://github.com/jayjthakkar13/shorty/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayjthakkar13/shorty.git"
+  },
+  "license": "ISC",
+  "author": "Jay",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
