@@ -3,11 +3,11 @@ import UrlController from "../controllers/url.controller";
 
 const router = Router();
 
-router.post('/api/url/shorten', UrlController.shorten);
+router.post('/shorten', UrlController.shorten);
 
-router.delete('/api/url/delete', UrlController.delete);
+router.delete('/delete', UrlController.delete);
 
-router.get('/api/url/list', UrlController.getUrlList);
+router.get('/list', UrlController.getUrlList);
 
 router.get('/:shortCode', UrlController.redirect);
 
