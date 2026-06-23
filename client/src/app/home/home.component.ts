@@ -1,7 +1,7 @@
 import { Component, inject, signal } from "@angular/core";
 import { DatePipe } from "@angular/common";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ShortenedUrl } from "./home.service";
+import { ShortenedUrl } from "../services/url.service";
 
 @Component({
   selector: "app-home",
