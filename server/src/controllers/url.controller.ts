@@ -62,7 +62,7 @@ export default class UrlController {
 		};
 
 		try {
-			const longUrl = req.longUrl;
+			const { longUrl } = req.body;
 			const userId = req.user._id;
 
 			if (userId && longUrl) {
