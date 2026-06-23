@@ -4,7 +4,9 @@ import { Observable, tap } from 'rxjs';
 
 export interface AuthResponse {
 	token: string;
-	email: string;
+	user: {
+    email: string;
+  }
 }
 
 @Injectable({ providedIn: 'root' })
@@ -42,6 +44,6 @@ export class AuthService {
 
 	private setSession(res: AuthResponse): void {
 		localStorage.setItem(AuthService.TOKEN_KEY, res.token);
-		localStorage.setItem(AuthService.EMAIL_KEY, res.email);
+		localStorage.setItem(AuthService.EMAIL_KEY, res.user.email);
 	}
 }
