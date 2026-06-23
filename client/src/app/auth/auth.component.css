@@ -3,11 +3,17 @@
 	margin: 4rem auto;
 	padding: 2rem;
 	font-family: system-ui, sans-serif;
+
+	background: #0f172a;
+	color: #f8fafc;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .auth-page h1 {
 	margin: 0 0 1.5rem;
 	font-size: 1.5rem;
+	color: #f8fafc;
 }
 
 .auth-form {
@@ -22,15 +28,27 @@
 	gap: 0.25rem;
 }
 
+.field span {
+	color: #cbd5e1;
+}
+
 .field input {
 	padding: 0.5rem 0.75rem;
-	border: 1px solid #cbd5e1;
+	background: #1e293b;
+	color: #f8fafc;
+	border: 1px solid #475569;
 	border-radius: 4px;
 	font-size: 1rem;
 }
 
+.field input:focus {
+	outline: none;
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
 .error {
-	color: #b91c1c;
+	color: #f87171;
 	font-size: 0.85rem;
 }
 
@@ -46,24 +64,29 @@ button[type="submit"] {
 	color: white;
 	font-size: 1rem;
 	cursor: pointer;
+	transition: background 0.2s;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+	background: #1d4ed8;
 }
 
 button[type="submit"]:disabled {
-	background: #94a3b8;
+	background: #64748b;
 	cursor: not-allowed;
 }
 
 .toggle {
 	margin-top: 1.5rem;
 	text-align: center;
-	color: #475569;
+	color: #94a3b8;
 }
 
 .link {
 	border: 0;
 	background: none;
 	padding: 0;
-	color: #2563eb;
+	color: #60a5fa;
 	cursor: pointer;
 	font: inherit;
 	text-decoration: underline;
