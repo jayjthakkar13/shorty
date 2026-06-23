@@ -1,0 +1,54 @@
+<section class="auth-page">
+	<h1>{{ mode() === 'login' ? 'Log in' : 'Create your account' }}</h1>
+
+	<form [formGroup]="form" (ngSubmit)="submit()" class="auth-form" novalidate>
+		<label class="field">
+			<span>Email</span>
+			<input type="email" formControlName="email" autocomplete="email" />
+			@if (form.controls.email.touched && form.controls.email.invalid) {
+				<small class="error">
+					@if (form.controls.email.hasError('required')) { Email is required. }
+					@if (form.controls.email.hasError('email')) { Enter a valid email address. }
+				</small>
+			}
+		</label>
+
+		<label class="field">
+			<span>Password</span>
+			<input
+				type="password"
+				formControlName="password"
+				[attr.autocomplete]="mode() === 'login' ? 'current-password' : 'new-password'"
+			/>
+			@if (form.controls.password.touched && form.controls.password.invalid) {
+				<small class="error">
+					@if (form.controls.password.hasError('required')) { Password is required. }
+					@if (form.controls.password.hasError('minlength')) { At least 8 characters. }
+					@if (form.controls.password.hasError('maxlength')) { No more than 32 characters. }
+					@if (form.controls.password.hasError('lowercase')) { Include a lowercase letter. }
+					@if (form.controls.password.hasError('uppercase')) { Include an uppercase letter. }
+					@if (form.controls.password.hasError('digit')) { Include a number. }
+					@if (form.controls.password.hasError('symbol')) { Include a symbol. }
+				</small>
+			}
+		</label>
+
+		@if (serverError(); as msg) {
+			<p class="error server-error">{{ msg }}</p>
+		}
+
+		<button type="submit" [disabled]="submitting()">
+			{{ submitting() ? 'Please wait…' : (mode() === 'login' ? 'Log in' : 'Create account') }}
+		</button>
+	</form>
+
+	<p class="toggle">
+		@if (mode() === 'login') {
+			Don't have an account?
+			<button type="button" class="link" (click)="toggleMode()">Register</button>
+		} @else {
+			Already have an account?
+			<button type="button" class="link" (click)="toggleMode()">Log in</button>
+		}
+	</p>
+</section>
