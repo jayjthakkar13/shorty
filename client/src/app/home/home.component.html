@@ -1,0 +1,90 @@
+<section class="home-page">
+	<header class="page-header">
+		<h1>Your short links</h1>
+		<div class="account">
+			@if (userEmail(); as email) {
+				<span class="email">{{ email }}</span>
+			}
+			<button type="button" class="link" (click)="logout()">Sign out</button>
+		</div>
+	</header>
+
+	<form [formGroup]="form" (ngSubmit)="submit()" class="shorten-form" novalidate>
+		<input
+      name="url"
+			type="url"
+			formControlName="url"
+			placeholder="Paste a long URL (https://…)"
+			autocomplete="off"
+			spellcheck="false"
+		/>
+		<button type="submit" [disabled]="submitting() || form.invalid">
+			{{ submitting() ? 'Shortening…' : 'Shorten' }}
+		</button>
+	</form>
+	@if (form.controls.url.touched && form.controls.url.invalid) {
+		<small class="error">
+			@if (form.controls.url.hasError('required')) { Enter a URL to shorten. }
+			@else if (form.controls.url.hasError('pattern')) { URL must start with http:// or https://. }
+		</small>
+	}
+
+	@if (error(); as msg) {
+		<p class="error server-error">{{ msg }}</p>
+	}
+
+	<div class="table-wrap">
+		@if (loading()) {
+			<p class="muted">Loading…</p>
+		} @else if (urls().length === 0) {
+			<p class="muted">No links yet. Shorten one above to get started.</p>
+		} @else {
+			<table class="urls">
+				<thead>
+					<tr>
+						<th class="icon-col"><span class="sr-only">Copy</span></th>
+						<th>Short code</th>
+						<th>Long URL</th>
+						<th>Created</th>
+						<th class="icon-col"><span class="sr-only">Delete</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (u of urls(); track u.shortUrl) {
+						<tr>
+							<td class="icon-col">
+								<button
+									type="button"
+									class="icon-btn"
+									(click)="copy(u.shortUrl)"
+									[attr.aria-label]="'Copy ' + u.shortUrl"
+									title="Copy short link"
+								>📋</button>
+								@if (copiedShortUrl() === u.shortUrl) {
+									<span class="copied">Copied</span>
+								}
+							</td>
+							<td>
+								<a [href]="u.shortUrl" target="_blank" rel="noopener">{{ shortCodeFor(u.shortUrl) }}</a>
+							</td>
+							<td class="long-cell">
+								<a [href]="u.longUrl" target="_blank" rel="noopener" [title]="u.longUrl">{{ u.longUrl }}</a>
+							</td>
+							<td class="date-cell">{{ u.creationDate | date:'medium' }}</td>
+							<td class="icon-col">
+								<button
+									type="button"
+									class="icon-btn"
+									(click)="deleteUrl(u.longUrl)"
+									[disabled]="deletingUrl() === u.longUrl"
+									[attr.aria-label]="'Delete ' + u.shortUrl"
+									title="Delete"
+								>🗑️</button>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+	</div>
+</section>
