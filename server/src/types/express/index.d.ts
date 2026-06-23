@@ -5,5 +5,8 @@ declare global {
 		interface Request {
 			user: UserDocument;
 		}
+    interface Request {
+      longUrl: string;
+    }
 	}
 }
